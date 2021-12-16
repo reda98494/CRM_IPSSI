@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-2">
+                        <label for="exampleInputUsername" class="form-label">Username :</label>
+                        {{ form.nom }}
+                    </div>
+                    <div class="mb-2">
+                        <label for="exampleInputUsername" class="form-label">Téléphone :</label>
+                        {{ form.telephone }}
+                    </div>
+                    <div class="mb-2">
+                        <label for="exampleInputUsername" class="form-label">Email :</label>
+                        {{ form.mail }}
+                    </div>
+                    <div class="mb-2">
+                        <label for="exampleInputUsername" class="form-label">Photo de profil :</label>
+                        {{ form.photo_profil }}
+                    </div>
+                    <div class="mb-2">
+                        <label for="exampleInputUsername" class="form-label">Utilisateur :</label>
+                        {{ form.user }}
+                    </div>
+                    <input type="submit" name="envoyer" class="btn btn-info">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        $(document).ready(function(){
+            $("input").addClass("form-control");
+        })
+
+    </script>
+{% endblock %}

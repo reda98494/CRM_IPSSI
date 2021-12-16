@@ -1,0 +1,74 @@
+{% extends 'main.html'%}
+{% block content %}
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Client:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'modifier_client' client.id %}">Modifier le Client</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'supprimer_client' client.id %}">Supprimer le Client</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Informations</h5>
+			<hr>
+			<p>Nom: {{ client.nom }} </p>
+			<p>Telephone: {{ client.telephone }} </p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total des Commandes</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{ commandes_total }}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+		    <button class="btn btn-primary" type="submit">Search</button>
+                {{ myFilter.form }}
+		  </form>
+		</div>
+	</div>
+
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Produit</th>
+					<th>Date de Commande</th>
+					<th>Status</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+                {% for commande in commandes %}
+                <tr>
+					<th>{{ commande.produit }}</th>
+					<th>{{ commande.date_creation}}</th>
+					<th>{{ commande.status }}</th>
+					<th><a href="{% url 'modifier_commande' commande.id %}" class="btn btn-primary">Modifier</a></th>
+					<th><a href="{% url 'supprimer_commande' commande.id %}" class="btn btn-danger">Supprimer</a></th>
+				</tr>
+                {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

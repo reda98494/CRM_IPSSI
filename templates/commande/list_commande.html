@@ -1,0 +1,34 @@
+{% extends 'main.html'%}
+{% block content %}
+    <div class="container mt-xl-5">
+        <div class="col-md-auto">
+            <h5>Les Comamndes</h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-primary  btn-sm btn-block" href="{% url 'ajouter_commande' %}">Ajouter une Commande</a>
+                <br>
+                <table class="table table-sm">
+                    <tr>
+                        <th>Produit</th>
+                        <th>Client</th>
+                        <th>Date de commande</th>
+                        <th>Status</th>
+                        <th>Mise à Jour</th>
+                        <th>Supprimer</th>
+                    </tr>
+
+                    {% for commande in commandes %}
+                        <tr>
+                            <th>{{ commande.produit }}</th>
+                            <th>{{ commande.client }}</th>
+                            <th>{{ commande.date_creation }}</th>
+                            <th>{{ commande.status }}</th>
+                            <th><a href="{% url 'modifier_commande' commande.id %}" class="btn btn-sm btn btn-info">Modifier</a></th>
+                            <th><a href="{% url 'supprimer_commande' commande.id %}" class="btn btn-sm btn btn-danger">supprimer</a></th>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
